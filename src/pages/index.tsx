@@ -23,12 +23,12 @@ interface GetImagesResponse {
 
 export default function Home(): JSX.Element {
   async function fetchImages({ pageParam = null }): Promise<GetImagesResponse> {
-    const { data } = await api.get('api/images', {
+    const { data } = await api.get('/api/images', {
       params: {
         after: pageParam,
       },
     });
-
+    console.log(data);
     return data;
   }
 
@@ -49,6 +49,8 @@ export default function Home(): JSX.Element {
     });
     return formatted;
   }, [data]);
+
+  console.log(formattedData);
 
   if (isLoading && !isError) {
     return <Loading />;
